@@ -620,6 +620,22 @@
             }
         }
 
+        function playPreEndSound() {
+            const audio = document.getElementById('preEndAudio');
+            if (audio) {
+                audio.currentTime = 0;
+                audio.play().catch(e => console.warn("Audio play blocked:", e));
+            }
+        }
+
+        function playEndSound() {
+            const audio = document.getElementById('endAudio');
+            if (audio) {
+                audio.currentTime = 0;
+                audio.play().catch(e => console.warn("Audio play blocked:", e));
+            }
+        }
+
         // Request Notification permission if needed
         function requestNotificationPermission() {
             if ('Notification' in window && Notification.permission !== 'granted') {
