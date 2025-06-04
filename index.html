@@ -818,7 +818,7 @@
                     !ct.endAlertFired
                 ) {
                     ct.endAlertFired = true;
-                    playPreEndSound();
+                    playEndSound();
                     if (Notification.permission === 'granted') {
                         new Notification(`"${ct.activity}" has ended.`);
                     }
