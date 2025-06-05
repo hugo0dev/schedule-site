@@ -358,6 +358,13 @@
             }
         }
 
+        /* Extra small screens - additional spacing */
+        @media (max-width: 406px) {
+            .controls {
+                margin-top: 60px;
+            }
+        }
+
         /* Loading Animation */
         .loading {
             text-align: center;
@@ -995,34 +1002,6 @@
             document.getElementById(`day-${day}`).classList.add('active');
         }
 
-        // Dynamic header height measurement for small screens
-        function adjustHeaderSpacing() {
-            const mediaQuery = window.matchMedia('(max-width: 406px)');
-            const controls = document.querySelector('.controls');
-            
-            if (mediaQuery.matches) {
-                const header = document.querySelector('.focus-bar');
-                
-                if (header && controls) {
-                    const headerHeight = header.offsetHeight;
-                    const safeMargin = 20; // Extra padding for safety
-                    
-                    // Replace CSS margin with dynamic measurement
-                    controls.style.marginTop = `${headerHeight + safeMargin}px - 100px`;
-                }
-            } else {
-                // Reset to CSS default for larger screens
-                if (controls) {
-                    controls.style.marginTop = '40px';
-                }
-            }
-        }
-
-        // Handle screen size changes
-        function handleScreenResize() {
-            adjustHeaderSpacing();
-        }
-
         // Initialize application
         async function init() {
             try {
@@ -1034,10 +1013,6 @@
 
                 // Initial render
                 renderDailySchedule();
-                
-                // Set up dynamic header spacing for small screens
-                adjustHeaderSpacing();
-                window.addEventListener('resize', handleScreenResize);
 
                 // Start clock updates
                 updateClock();
