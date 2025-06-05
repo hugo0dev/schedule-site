@@ -25,7 +25,7 @@
             background: linear-gradient(135deg, rgb(20, 21, 22) 0%, rgb(34, 37, 38) 100%);
             color: rgb(212, 209, 203);
             min-height: 100vh;
-            padding-top: 120px; /* Space for fixed focus bar */
+            padding-top: 120px; /* Initial fallback value */
         }
 
         /* Focus Bar - Fixed Top Section */
@@ -70,7 +70,7 @@
             color: rgb(77, 173, 255);
             margin-bottom: 5px;
             max-height: 60px;
-            overflow-y: auto;
+            overflow-y: hidden;
             overflow-wrap: break-word;
             line-height: 1.3;
         }
@@ -79,7 +79,7 @@
             font-size: 0.9em;
             color: rgb(157, 148, 136);
             max-height: 55px;
-            overflow-y: auto;
+            overflow-y: hidden;
             overflow-wrap: break-word;
             line-height: 1.3;
         }
@@ -366,14 +366,10 @@
                 justify-content: center;
             }
 
-            body {
-                padding-top: 180px;
-            }
-
             /* Mobile Controls */
             .controls {
                 justify-content: center;
-                margin-top: 40px;
+                margin-top: 0;
                 margin-bottom: 15px;
                 padding: 0 15px;
             }
@@ -386,12 +382,7 @@
             }
         }
 
-        /* Extra small screens - additional spacing */
-        @media (max-width: 406px) {
-            .controls {
-                margin-top: 60px;
-            }
-        }
+        /* Extra small screens - removed extra spacing since dynamic padding handles it */
 
         /* Loading Animation */
         .loading {
@@ -665,6 +656,8 @@
         let parsedSchedule = {};
         let currentView = 'daily';
         let currentDay = '';
+        let lastCurrentActivity = '';
+        let lastNextActivity = '';
         
         // Utility: Play a short beep via Web Audio API
         function playBeep() {
@@ -859,11 +852,14 @@
 
             const { current, next } = getCurrentAndNextTask();
 
+            let currentActivityText = 'No active task';
+            let nextActivityText = 'Next: Nothing scheduled';
+
             if (current) {
                 const ct = current.task;
                 const countdown = calculateCountdown(ct.endTime, ct.startTime);
 
-                document.getElementById('currentActivity').textContent = ct.activity;
+                currentActivityText = ct.activity;
                 document.getElementById('countdownTimer').textContent = countdown.display;
 
                 const progress = calculateProgress(ct.startTime, ct.endTime);
@@ -894,21 +890,47 @@
                     }
                 }
             } else {
-                document.getElementById('currentActivity').textContent = 'No active task';
                 document.getElementById('countdownTimer').textContent = '--:--:--';
                 document.getElementById('progressBar').style.width = '0%';
             }
 
             if (next) {
-                document.getElementById('nextActivity').textContent = `Next: ${next.task.activity}`;
-            } else {
-                document.getElementById('nextActivity').textContent = 'Next: Nothing scheduled';
+                nextActivityText = `Next: ${next.task.activity}`;
+            }
+
+            // Only update DOM if content actually changed
+            if (currentActivityText !== lastCurrentActivity) {
+                document.getElementById('currentActivity').textContent = currentActivityText;
+                lastCurrentActivity = currentActivityText;
+                checkScrollOverflow('currentActivity');
+            }
+
+            if (nextActivityText !== lastNextActivity) {
+                document.getElementById('nextActivity').textContent = nextActivityText;
+                lastNextActivity = nextActivityText;
+                checkScrollOverflow('nextActivity');
             }
 
             // Update highlighting in daily view
             if (currentView === 'daily') {
                 updateCurrentTaskHighlight(current);
             }
+        }
+
+        // Check if content overflows and enable scrolling if needed
+        function checkScrollOverflow(elementId = null) {
+            const elements = elementId ? [elementId] : ['currentActivity', 'nextActivity'];
+            
+            elements.forEach(id => {
+                const element = document.getElementById(id);
+                const maxHeight = id === 'currentActivity' ? 60 : 55;
+                
+                if (element.scrollHeight > maxHeight) {
+                    element.style.overflowY = 'auto';
+                } else {
+                    element.style.overflowY = 'hidden';
+                }
+            });
         }
 
         // Highlight the current task card in daily view
@@ -1039,6 +1061,9 @@
                 await loadScheduleData();
                 currentDay = getCurrentDay();
 
+                // Set up dynamic header height adjustment
+                setupDynamicHeaderHeight();
+
                 // Initial render
                 renderDailySchedule();
 
@@ -1048,6 +1073,31 @@
             } catch (error) {
                 console.error('Error initializing application:', error);
                 document.getElementById('dailySchedule').innerHTML = '<div class="loading">Error loading schedule data</div>';
+            }
+        }
+
+        // Set up ResizeObserver for dynamic header height
+        function setupDynamicHeaderHeight() {
+            const header = document.querySelector('.focus-bar');
+            const body = document.body;
+
+            function updateBodyPadding() {
+                const headerHeight = header.offsetHeight;
+                const isMobile = window.innerWidth <= 768;
+                const spacing = isMobile ? 10 : 20; // Less spacing on mobile
+                body.style.paddingTop = `${headerHeight + spacing}px`;
+            }
+
+            // Initial setup
+            updateBodyPadding();
+
+            // Watch for header size changes
+            if (window.ResizeObserver) {
+                const resizeObserver = new ResizeObserver(updateBodyPadding);
+                resizeObserver.observe(header);
+            } else {
+                // Fallback for older browsers
+                window.addEventListener('resize', updateBodyPadding);
             }
         }
 
