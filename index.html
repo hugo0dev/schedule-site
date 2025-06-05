@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,12 +15,7 @@
         }
 
         html {
-            /* From XML: */
-            color: rgb(232, 230, 227);
             background-color: rgb(24, 26, 27);
-            border-color: rgb(115, 107, 94);
-            outline-color: rgb(232, 230, 227);
-            opacity: 1;
         }
 
         body {
@@ -36,11 +33,10 @@
             left: 0;
             right: 0;
             background: linear-gradient(135deg, rgb(32, 34, 36) 0%, rgb(23, 24, 25) 100%);
-            border-bottom: 3px solid rgb(0, 73, 156);
+            border-bottom: 3px solid rgb(77, 173, 255);
             padding: 20px;
             z-index: 1000;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-            color: rgb(212, 209, 203);
         }
 
         .focus-content {
@@ -49,28 +45,23 @@
             align-items: center;
             max-width: 1400px;
             margin: 0 auto;
-            color: rgb(212, 209, 203);
         }
 
         .focus-left {
             flex: 1;
             text-align: left;
-            color: rgb(212, 209, 203);
         }
 
         .focus-center {
             flex: 1;
             text-align: center;
-            color: rgb(212, 209, 203);
         }
 
         .focus-right {
             flex: 1;
             text-align: right;
-            color: rgb(212, 209, 203);
         }
 
-        /* Current / Next Activity */
         .current-activity {
             font-size: 1.4em;
             font-weight: 600;
@@ -83,7 +74,6 @@
             color: rgb(157, 148, 136);
         }
 
-        /* Countdown Timer */
         .countdown-timer {
             font-size: 2em;
             font-weight: 700;
@@ -92,7 +82,6 @@
             margin-bottom: 8px;
         }
 
-        /* Progress Bar */
         .progress-bar-container {
             width: 100%;
             height: 6px;
@@ -108,7 +97,6 @@
             transition: width 0.3s ease;
         }
 
-        /* Clock and Date */
         .clock {
             font-size: 1.6em;
             font-weight: 600;
@@ -127,7 +115,6 @@
             max-width: 1400px;
             margin: 0 auto;
             padding: 20px;
-            color: rgb(212, 209, 203);
         }
 
         /* Controls */
@@ -135,7 +122,6 @@
             display: flex;
             justify-content: flex-end;
             margin-bottom: 20px;
-            color: rgb(212, 209, 203);
         }
 
         .toggle-btn {
@@ -152,10 +138,13 @@
         }
 
         .toggle-btn:hover {
-            /* Retained original hover since no XML override was provided */
-            background: linear-gradient(135deg, #357abd, #2a5f8f);
+            background: linear-gradient(135deg, rgb(42, 98, 151), rgb(53, 122, 189));
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(74, 158, 255, 0.4);
+            box-shadow: 0 6px 20px rgba(0, 74, 160, 0.4);
+        }
+
+        .todayOrWeekBtn{
+            margin-bottom: 4px;
         }
 
         /* Daily Schedule - Horizontal Flow */
@@ -177,7 +166,6 @@
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
-            color: rgb(212, 209, 203);
         }
 
         .schedule-card:hover {
@@ -190,7 +178,6 @@
             border-color: rgb(0, 179, 95);
             background: linear-gradient(135deg, rgb(21, 59, 46) 0%, rgb(36, 59, 36) 100%);
             box-shadow: 0 0 20px rgba(0, 204, 133, 0.3);
-            color: rgb(212, 209, 203);
         }
 
         .schedule-card.current::before {
@@ -198,7 +185,7 @@
             position: absolute;
             top: 8px;
             right: 8px;
-            background: rgb(0, 179, 95);
+            background: rgb(26, 255, 148);
             color: #000;
             padding: 4px 8px;
             border-radius: 4px;
@@ -218,7 +205,6 @@
             font-weight: 500;
             margin-bottom: 8px;
             line-height: 1.4;
-            color: rgb(212, 209, 203);
         }
 
         .card-duration {
@@ -245,21 +231,16 @@
             display: block;
         }
 
-        #dayTabs {
-            color: rgb(212, 209, 203);
-        }
-
         .day-tabs {
             display: flex;
             gap: 8px;
             margin-bottom: 20px;
             flex-wrap: wrap;
-            color: rgb(212, 209, 203);
         }
 
         .day-tab {
-            background: #333;
-            color: #ccc;
+            background: rgb(38, 42, 43);
+            color: rgb(178, 172, 162);
             border: none;
             padding: 12px 20px;
             border-radius: 8px;
@@ -270,14 +251,14 @@
         }
 
         .day-tab:hover {
-            background: #444;
-            color: #fff;
+            background: rgb(118, 109, 97);
+            color: rgb(232, 230, 227);
         }
 
         .day-tab.active {
-            background: linear-gradient(135deg, #4a9eff, #357abd);
-            color: white;
-            box-shadow: 0 4px 15px rgba(74, 158, 255, 0.3);
+            background: linear-gradient(135deg, rgb(0, 74, 160), rgb(42, 98, 151));
+            color: rgb(232, 230, 227);
+            box-shadow: 0 4px 15px rgba(0, 74, 160, 0.3);
         }
 
         .day-content {
@@ -298,7 +279,6 @@
             gap: 20px;
             align-items: center;
             transition: all 0.3s ease;
-            color: rgb(212, 209, 203);
         }
 
         .weekly-item:hover {
@@ -315,7 +295,6 @@
         .weekly-activity {
             flex: 1;
             font-weight: 500;
-            color: rgb(212, 209, 203);
         }
 
         .weekly-duration {
@@ -361,6 +340,21 @@
             body {
                 padding-top: 180px;
             }
+
+            /* Mobile Controls */
+            .controls {
+                justify-content: center;
+                margin-top: 40px;
+                margin-bottom: 15px;
+                padding: 0 15px;
+            }
+
+            .toggle-btn {
+                width: 100%;
+                max-width: 350px;
+                padding: 15px 24px;
+                font-size: 1.1em;
+            }
         }
 
         /* Loading Animation */
@@ -368,7 +362,7 @@
             text-align: center;
             padding: 40px;
             font-size: 1.2em;
-            color: #888; /* No XML override provided */
+            color: rgb(157, 148, 136);
         }
 
         /* Modal Styles */
@@ -394,8 +388,8 @@
         }
 
         .modal-content {
-            background: linear-gradient(135deg, #2a2a2a 0%, #1e1e1e 100%);
-            border: 2px solid #4a9eff;
+            background: linear-gradient(135deg, rgb(32, 34, 36) 0%, rgb(23, 24, 25) 100%);
+            border: 2px solid rgb(77, 173, 255);
             border-radius: 15px;
             padding: 30px;
             max-width: 400px;
@@ -414,19 +408,19 @@
             font-size: 1.5em;
             font-weight: 600;
             margin-bottom: 15px;
-            color: #4a9eff; /* No XML override provided */
+            color: rgb(77, 173, 255);
         }
 
         .modal-message {
             font-size: 1.1em;
             margin-bottom: 25px;
             line-height: 1.4;
-            color: #e0e0e0; /* No XML override provided */
+            color: rgb(212, 209, 203);
         }
 
         .modal-button {
-            background: linear-gradient(135deg, #4a9eff, #357abd);
-            color: white;
+            background: linear-gradient(135deg, rgb(0, 74, 160), rgb(42, 98, 151));
+            color: rgb(232, 230, 227);
             border: none;
             padding: 12px 30px;
             border-radius: 25px;
@@ -434,30 +428,30 @@
             font-size: 1.1em;
             font-weight: 500;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(74, 158, 255, 0.3);
+            box-shadow: 0 4px 15px rgba(0, 74, 160, 0.3);
             min-width: 100px;
         }
 
         .modal-button:hover {
-            background: linear-gradient(135deg, #357abd, #2a5f8f);
+            background: linear-gradient(135deg, rgb(42, 98, 151), rgb(53, 122, 189));
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(74, 158, 255, 0.4);
+            box-shadow: 0 6px 20px rgba(0, 74, 160, 0.4);
         }
 
         .warning-modal .modal-content {
-            border-color: #ffaa00; /* No XML override provided */
+            border-color: #ffaa00;
         }
 
         .warning-modal .modal-title {
-            color: #ffaa00; /* No XML override provided */
+            color: #ffaa00;
         }
 
         .end-modal .modal-content {
-            border-color: #00ff88; /* No XML override provided */
+            border-color: rgb(26, 255, 148);
         }
 
         .end-modal .modal-title {
-            color: #00ff88; /* No XML override provided */
+            color: rgb(26, 255, 148);
         }
 
         /* Sound Indicator */
@@ -467,7 +461,7 @@
             right: 10px;
             width: 20px;
             height: 20px;
-            background: #00ff88; /* No XML override provided */
+            background: rgb(26, 255, 148);
             border-radius: 50%;
             animation: pulse 1s infinite;
         }
@@ -518,7 +512,7 @@
     <div class="main-container">
         <!-- Controls -->
         <div class="controls">
-            <button class="toggle-btn" id="toggleBtn" onclick="toggleView()">View Full Week</button>
+            <button class="toggle-btn todayOrWeekBtn" id="todayOrWeekBtn" onclick="toggleView()">View Full Week</button>
         </div>
 
         <!-- Daily Schedule View -->
@@ -717,7 +711,8 @@
 
         // Parse a time string like "9:00 AM" into a Date() object set to today at that hour/minute.
         // Returns null if timeStr is blank, contains "onwards", "All Day", or "After".
-        function parseTime(timeStr) {
+        // For cross-midnight times, set isEndTime to true to handle next-day logic
+        function parseTime(timeStr, isEndTime = false, startTime = null) {
             if (!timeStr || timeStr.includes('onwards') || timeStr.includes('All Day') || timeStr.includes('After')) {
                 return null;
             }
@@ -739,6 +734,13 @@
 
             const date = new Date();
             date.setHours(hours, minutes, 0, 0);
+            
+            // Handle cross-midnight scenarios
+            if (isEndTime && startTime && date <= startTime) {
+                // If end time is earlier than start time, it must be next day
+                date.setDate(date.getDate() + 1);
+            }
+            
             return date;
         }
 
@@ -754,7 +756,7 @@
             for (let i = 0; i < todaySchedule.length; i++) {
                 const taskObj = todaySchedule[i];
                 const startTime = parseTime(taskObj.startTime);
-                const endTime = parseTime(taskObj.endTime);
+                const endTime = parseTime(taskObj.endTime, true, startTime);
 
                 if (startTime && endTime) {
                     if (now >= startTime && now < endTime) {
@@ -773,10 +775,11 @@
         }
 
         // Calculate countdown text and total seconds until endTime
-        function calculateCountdown(endTime) {
+        function calculateCountdown(endTime, startTime = null) {
             if (!endTime) return { display: 'No Timer', seconds: 0 };
 
-            const end = parseTime(endTime);
+            const start = startTime ? parseTime(startTime) : null;
+            const end = parseTime(endTime, true, start);
             if (!end) return { display: 'No Timer', seconds: 0 };
 
             const now = new Date();
@@ -801,7 +804,7 @@
             if (!startTime || !endTime) return 0;
 
             const start = parseTime(startTime);
-            const end = parseTime(endTime);
+            const end = parseTime(endTime, true, start);
             const now = new Date();
 
             if (!start || !end || now < start || now > end) return 0;
@@ -822,7 +825,7 @@
 
             if (current) {
                 const ct = current.task;
-                const countdown = calculateCountdown(ct.endTime);
+                const countdown = calculateCountdown(ct.endTime, ct.startTime);
 
                 document.getElementById('currentActivity').textContent = ct.activity;
                 document.getElementById('countdownTimer').textContent = countdown.display;
@@ -961,18 +964,18 @@
         function toggleView() {
             const dailySchedule = document.getElementById('dailySchedule');
             const weeklySchedule = document.getElementById('weeklySchedule');
-            const toggleBtn = document.getElementById('toggleBtn');
+            const todayOrWeekBtn = document.getElementById('todayOrWeekBtn');
 
             if (currentView === 'daily') {
                 dailySchedule.style.display = 'none';
                 weeklySchedule.classList.add('active');
-                toggleBtn.textContent = 'View Today';
+                todayOrWeekBtn.textContent = 'View Today';
                 currentView = 'weekly';
                 renderWeeklySchedule();
             } else {
                 dailySchedule.style.display = 'flex';
                 weeklySchedule.classList.remove('active');
-                toggleBtn.textContent = 'View Full Week';
+                todayOrWeekBtn.textContent = 'View Full Week';
                 currentView = 'daily';
                 renderDailySchedule();
             }
@@ -991,6 +994,34 @@
             document.getElementById(`day-${day}`).classList.add('active');
         }
 
+        // Dynamic header height measurement for small screens
+        function adjustHeaderSpacing() {
+            const mediaQuery = window.matchMedia('(max-width: 406px)');
+            const controls = document.querySelector('.controls');
+            
+            if (mediaQuery.matches) {
+                const header = document.querySelector('.focus-bar');
+                
+                if (header && controls) {
+                    const headerHeight = header.offsetHeight;
+                    const safeMargin = 20; // Extra padding for safety
+                    
+                    // Replace CSS margin with dynamic measurement
+                    controls.style.marginTop = `${headerHeight + safeMargin}px - 100px`;
+                }
+            } else {
+                // Reset to CSS default for larger screens
+                if (controls) {
+                    controls.style.marginTop = '40px';
+                }
+            }
+        }
+
+        // Handle screen size changes
+        function handleScreenResize() {
+            adjustHeaderSpacing();
+        }
+
         // Initialize application
         async function init() {
             try {
@@ -1002,6 +1033,10 @@
 
                 // Initial render
                 renderDailySchedule();
+                
+                // Set up dynamic header spacing for small screens
+                adjustHeaderSpacing();
+                window.addEventListener('resize', handleScreenResize);
 
                 // Start clock updates
                 updateClock();
